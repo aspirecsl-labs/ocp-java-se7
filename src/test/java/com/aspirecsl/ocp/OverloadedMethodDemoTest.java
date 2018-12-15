@@ -1,7 +1,5 @@
-package com.aspirecsl.learning;
+package com.aspirecsl.ocp;
 
-import com.aspirecsl.learning.OverloadedMethodDemo.Animal;
-import com.aspirecsl.learning.OverloadedMethodDemo.Dog;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;

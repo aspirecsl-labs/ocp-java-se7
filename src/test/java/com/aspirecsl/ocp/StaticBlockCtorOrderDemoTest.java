@@ -1,4 +1,4 @@
-package com.aspirecsl.learning;
+package com.aspirecsl.ocp;
 
 import org.junit.Test;
 

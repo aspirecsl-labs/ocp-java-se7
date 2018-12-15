@@ -1,4 +1,4 @@
-package com.aspirecsl.learning;
+package com.aspirecsl.ocp;
 
 @SuppressWarnings( { "unused",
                      "WeakerAccess" } )
@@ -22,14 +22,6 @@ public class OverloadedMethodDemo
     public String socialize( Animal animal, Dog dog )
     {
         return "An Animal & Dog are friends";
-    }
-
-    public static class Animal
-    {
-    }
-
-    public static class Dog extends Animal
-    {
     }
 }
 
