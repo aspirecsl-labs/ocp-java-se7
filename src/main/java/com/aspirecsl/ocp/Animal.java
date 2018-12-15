@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings( { "unused",
+                     "WeakerAccess",
                      "RedundantThrows" } )
 public class Animal
 {
@@ -14,7 +15,7 @@ public class Animal
 
     public List< String > foods()
     {
-        return Arrays.asList( "Vegetable", "Fruits" );
+        return Arrays.asList( "Vegetables", "Fruits" );
     }
 
     protected String isHumanFriendly()
@@ -40,5 +41,10 @@ public class Animal
     public String climbsTrees() throws Exception
     {
         return "maybe";
+    }
+
+    public boolean canEatTreats( List< String > treats )
+    {
+        return false;
     }
 }

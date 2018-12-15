@@ -34,9 +34,9 @@ public class OverriddenMethodDemoTest
     public void overridingMethod_CanReturnA_CovariantReturnType()
     {
         assertThat( overriddenMethodDemo_SUT.foodsEaten( animal ),
-                    containsInAnyOrder( "Vegetable", "Fruits" ) );
+                    containsInAnyOrder( "Vegetables", "Fruits" ) );
         assertThat( overriddenMethodDemo_SUT.foodsEaten( dog ),
-                    containsInAnyOrder( "Vegetable", "Fruits", "Meat", "Biscuit" ) );
+                    containsInAnyOrder( "Vegetables", "Fruits", "Meat", "Biscuits" ) );
     }
 
 

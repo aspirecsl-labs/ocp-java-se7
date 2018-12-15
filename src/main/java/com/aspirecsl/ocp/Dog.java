@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @SuppressWarnings( { "unused",
+                     "WeakerAccess",
                      "RedundantThrows" } )
 public class Dog extends Animal
 {
@@ -17,7 +18,7 @@ public class Dog extends Animal
     @Override
     public ArrayList< String > foods()
     {
-        ArrayList< String > dogFoods = new ArrayList<>( Arrays.asList( "Meat", "Biscuit" ) );
+        ArrayList< String > dogFoods = new ArrayList<>( Arrays.asList( "Meat", "Biscuits" ) );
         dogFoods.addAll( super.foods() );
         return dogFoods;
     }
@@ -50,5 +51,11 @@ public class Dog extends Animal
     public String climbsTrees()
     {
         return "no";
+    }
+
+    // a covariant argument overloads the method instead of overriding it
+    public boolean canEatTreats( ArrayList< String > treats )
+    {
+        return true;
     }
 }
