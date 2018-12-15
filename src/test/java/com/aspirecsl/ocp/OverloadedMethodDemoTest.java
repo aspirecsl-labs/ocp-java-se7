@@ -4,9 +4,6 @@ import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -43,16 +40,5 @@ public class OverloadedMethodDemoTest
         // both (Animal animal, Dog dog) and (Dog dog, Animal animal) parameter lists
 
         // overloadedMethodDemo_SUT.socialize( dog1, dog2 );
-    }
-
-    @Test
-    public void usingCovariantArguments_OverloadsTheMethodInTheParentClass_InsteadOfOverridingIt()
-    {
-        final Dog dog = new Dog();
-
-        assertThat( overloadedMethodDemo_SUT.canEatTreats( dog, asList( "Meat", "Biscuits" ) ),
-                    equalTo( false ) );
-        assertThat( overloadedMethodDemo_SUT.canEatTreats( dog, new ArrayList<>( asList( "Meat", "Biscuits" ) ) ),
-                    equalTo( true ) );
     }
 }

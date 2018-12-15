@@ -47,4 +47,9 @@ public class Animal
     {
         return false;
     }
+
+    public static String identity()
+    {
+        return "Animal";
+    }
 }

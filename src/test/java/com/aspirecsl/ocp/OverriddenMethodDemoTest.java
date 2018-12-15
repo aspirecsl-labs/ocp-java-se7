@@ -3,13 +3,16 @@ package com.aspirecsl.ocp;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 
 public class OverriddenMethodDemoTest
 {
-    private Animal dog;
+    private Dog    dog;
     private Animal animal;
 
     private OverriddenMethodDemo overriddenMethodDemo_SUT;
@@ -48,7 +51,7 @@ public class OverriddenMethodDemoTest
     }
 
     @Test
-    public void overridingMethod_CanUseA_Different_NonAccessModifier_SoLongAs_OverriddenMethod_IsNotFinal()
+    public void overridingMethod_CanUseA_Different_NonAccessModifier_SoLongAs_OverriddenMethod_IsNotFinal_OrStatic()
     {
         assertThat( overriddenMethodDemo_SUT.wagsTail( animal ), equalTo( "maybe" ) );
         assertThat( overriddenMethodDemo_SUT.wagsTail( dog ), equalTo( "yes" ) );
@@ -73,5 +76,26 @@ public class OverriddenMethodDemoTest
     {
         assertThat( overriddenMethodDemo_SUT.climbsTrees( animal ), equalTo( "maybe" ) );
         assertThat( overriddenMethodDemo_SUT.climbsTrees( dog ), equalTo( "no" ) );
+    }
+
+    @Test
+    public void usingCovariantArguments_OverloadsTheMethodInTheParentClass_InsteadOfOverridingIt()
+    {
+        assertThat( overriddenMethodDemo_SUT.canEatTreats( dog, asList( "Meat", "Biscuits" ) ),
+                    equalTo( false ) );
+        assertThat( overriddenMethodDemo_SUT.canEatTreats( dog, new ArrayList<>( asList( "Meat", "Biscuits" ) ) ),
+                    equalTo( true ) );
+
+        assertThat( overriddenMethodDemo_SUT.canEatTreats( ( Animal ) dog, asList( "Meat", "Biscuits" ) ),
+                    equalTo( false ) );
+        assertThat( overriddenMethodDemo_SUT.canEatTreats( ( Animal ) dog, new ArrayList<>( asList( "Meat", "Biscuits" ) ) ),
+                    equalTo( false ) );
+    }
+
+    @Test
+    public void staticMethods_AreHidden_AndNot_Overridden()
+    {
+        assertThat( overriddenMethodDemo_SUT.mistakenIdentity( dog ), equalTo( "Animal" ) );
+        assertThat( overriddenMethodDemo_SUT.mistakenIdentity( animal ), equalTo( "Animal" ) );
     }
 }

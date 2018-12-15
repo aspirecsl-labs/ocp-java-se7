@@ -9,6 +9,23 @@ import java.util.Arrays;
                      "RedundantThrows" } )
 public class Dog extends Animal
 {
+    private final String name;
+
+    public Dog()
+    {
+        this( "Luchi" );
+    }
+
+    public Dog( String name )
+    {
+        this.name = name;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
     @Override
     public String noise()
     {
@@ -57,5 +74,16 @@ public class Dog extends Animal
     public boolean canEatTreats( ArrayList< String > treats )
     {
         return true;
+    }
+
+    public static String identity()
+    {
+        return "Dog";
+    }
+
+    // overloads equals(Object object) method in Object class
+    public boolean equals( Dog other )
+    {
+        return other != null && name.equals( other.name );
     }
 }
