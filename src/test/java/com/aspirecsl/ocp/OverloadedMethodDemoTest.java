@@ -50,11 +50,9 @@ public class OverloadedMethodDemoTest
     {
         final Dog dog = new Dog();
 
-        assertThat( overloadedMethodDemo_SUT.canEatTreats( dog,
-                                                           asList( "Meat", "Biscuits" ) ),
+        assertThat( overloadedMethodDemo_SUT.canEatTreats( dog, asList( "Meat", "Biscuits" ) ),
                     equalTo( false ) );
-        assertThat( overloadedMethodDemo_SUT.canEatTreats( dog,
-                                                           new ArrayList<>( asList( "Meat", "Biscuits" ) ) ),
+        assertThat( overloadedMethodDemo_SUT.canEatTreats( dog, new ArrayList<>( asList( "Meat", "Biscuits" ) ) ),
                     equalTo( true ) );
     }
 }
