@@ -11,6 +11,11 @@ public class EnumInitialisationOrderTest
     @Test
     public void verifies_EnumInstance_InitialisationOrder()
     {
-        assertThat( TESTER.getValue(), equalTo( "Enum Constructor And Then Enum Static Initialiser" ) );
+        assertThat( TESTER.getValue(),
+                    equalTo( "Enum Instance Initialiser " +
+                                     "And Then " +
+                                     "Enum Constructor " +
+                                     "And Then " +
+                                     "Enum Static Initialiser" ) );
     }
 }

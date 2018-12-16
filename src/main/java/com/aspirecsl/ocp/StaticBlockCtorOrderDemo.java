@@ -21,24 +21,24 @@ public class StaticBlockCtorOrderDemo
 
     public static class Parent
     {
-        protected static String bob;
+        protected static String value;
 
         static
         {
             //noinspection ConstantConditions
-            bob = createOrAppend( bob, "Parent Static Initialiser" );
-            bob = createOrAppend( bob, " And Then " );
+            value = createOrAppend( value, "Parent Static Initialiser" );
+            value = createOrAppend( value, " And Then " );
         }
 
         {
-            bob = createOrAppend( bob, "Parent Instance Initialiser" );
-            bob = createOrAppend( bob, " And Then " );
+            value = createOrAppend( value, "Parent Instance Initialiser" );
+            value = createOrAppend( value, " And Then " );
         }
 
         public Parent()
         {
-            bob = createOrAppend( bob, "Parent Ctor" );
-            bob = createOrAppend( bob, " And Then " );
+            value = createOrAppend( value, "Parent Ctor" );
+            value = createOrAppend( value, " And Then " );
         }
     }
 
@@ -46,23 +46,23 @@ public class StaticBlockCtorOrderDemo
     {
         static
         {
-            bob = createOrAppend( bob, "Child Static Initialiser" );
-            bob = createOrAppend( bob, " And Then " );
+            value = createOrAppend( value, "Child Static Initialiser" );
+            value = createOrAppend( value, " And Then " );
         }
 
         {
-            bob = createOrAppend( bob, "Child Instance Initialiser" );
-            bob = createOrAppend( bob, " And Then " );
+            value = createOrAppend( value, "Child Instance Initialiser" );
+            value = createOrAppend( value, " And Then " );
         }
 
         public Child()
         {
-            bob = createOrAppend( bob, "Child Ctor" );
+            value = createOrAppend( value, "Child Ctor" );
         }
 
         public String value()
         {
-            return bob;
+            return value;
         }
     }
 }

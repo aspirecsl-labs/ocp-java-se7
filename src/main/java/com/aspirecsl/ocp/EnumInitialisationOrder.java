@@ -2,32 +2,37 @@ package com.aspirecsl.ocp;
 
 import java.util.Optional;
 
-@SuppressWarnings( "unused" )
+@SuppressWarnings( { "unused",
+                     "ClassInitializerMayBeStatic" } )
 public enum EnumInitialisationOrder
 {
     TESTER;
 
-    private static String bob;
+    private static String value;
 
     public String getValue()
     {
-        return bob;
+        return value;
     }
 
     static
     {
-        bob = createOrAppend( bob, "Enum Static Initialiser" );
+        value = createOrAppend( value, "Enum Static Initialiser" );
+    }
+
+    {
+        modifyValue( "Enum Instance Initialiser" );
     }
 
     EnumInitialisationOrder()
     {
-        ctorOperation();
+        modifyValue( "Enum Constructor" );
     }
 
-    private static void ctorOperation()
+    private static void modifyValue( String text )
     {
-        bob = createOrAppend( bob, "Enum Constructor" );
-        bob = createOrAppend( bob, " And Then " );
+        value = createOrAppend( value, text );
+        value = createOrAppend( value, " And Then " );
     }
 
     public static String createOrAppend( String bob, String text )
