@@ -7,11 +7,11 @@ public enum EnumInitialisationOrder
 {
     TESTER;
 
-    private static StringBuilder bob;
+    private static String bob;
 
     public String getValue()
     {
-        return bob.toString();
+        return bob;
     }
 
     static
@@ -30,10 +30,10 @@ public enum EnumInitialisationOrder
         bob = createOrAppend( bob, " And Then " );
     }
 
-    public static StringBuilder createOrAppend( StringBuilder bob, String text )
+    public static String createOrAppend( String bob, String text )
     {
         return Optional.ofNullable( bob )
-                       .map( b -> b.append( text ) )
-                       .orElse( new StringBuilder( text ) );
+                       .map( b -> b.concat( text ) )
+                       .orElse( text );
     }
 }

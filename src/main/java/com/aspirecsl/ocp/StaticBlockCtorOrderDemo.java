@@ -12,16 +12,16 @@ public class StaticBlockCtorOrderDemo
         return new Child().value();
     }
 
-    public static StringBuilder createOrAppend( StringBuilder bob, String text )
+    public static String createOrAppend( String bob, String text )
     {
         return Optional.ofNullable( bob )
-                       .map( b -> b.append( text ) )
-                       .orElse( new StringBuilder( text ) );
+                       .map( b -> b.concat( text ) )
+                       .orElse( text );
     }
 
     public static class Parent
     {
-        protected static StringBuilder bob;
+        protected static String bob;
 
         static
         {
@@ -62,7 +62,7 @@ public class StaticBlockCtorOrderDemo
 
         public String value()
         {
-            return bob.toString();
+            return bob;
         }
     }
 }
