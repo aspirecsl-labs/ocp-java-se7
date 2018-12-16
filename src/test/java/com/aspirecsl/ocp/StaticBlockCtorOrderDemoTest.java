@@ -26,10 +26,10 @@ public class StaticBlockCtorOrderDemoTest
                                      "And Then " +
                                      "Parent Instance Initialiser " +
                                      "And Then " +
-                                     "Parent Ctor " +
+                                     "Parent Constructor " +
                                      "And Then " +
                                      "Child Instance Initialiser " +
                                      "And Then " +
-                                     "Child Ctor" ) );
+                                     "Child Constructor" ) );
     }
 }

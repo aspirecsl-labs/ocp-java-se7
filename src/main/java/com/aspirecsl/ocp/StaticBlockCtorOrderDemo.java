@@ -37,7 +37,7 @@ public class StaticBlockCtorOrderDemo
 
         public Parent()
         {
-            value = createOrAppend( value, "Parent Ctor" );
+            value = createOrAppend( value, "Parent Constructor" );
             value = createOrAppend( value, " And Then " );
         }
     }
@@ -57,7 +57,7 @@ public class StaticBlockCtorOrderDemo
 
         public Child()
         {
-            value = createOrAppend( value, "Child Ctor" );
+            value = createOrAppend( value, "Child Constructor" );
         }
 
         public String value()
