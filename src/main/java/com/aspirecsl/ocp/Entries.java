@@ -3,9 +3,11 @@ package com.aspirecsl.ocp;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-@SuppressWarnings( "WeakerAccess" )
+@SuppressWarnings( { "unused",
+                     "WeakerAccess" } )
 public class Entries
 {
+    @SuppressWarnings( "unused" )
     public static class ComparableEntry implements Comparable< ComparableEntry >
     {
         private final int value;
