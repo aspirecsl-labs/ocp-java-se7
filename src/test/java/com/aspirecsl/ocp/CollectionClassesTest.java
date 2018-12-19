@@ -412,6 +412,22 @@ public class CollectionClassesTest
     }
 
     @Test
+    public void treeMap_Uses_CompareToMethod_AndNot_EqualsMethod_ToEstablish_KeyEquality()
+    {
+        final Map< Entries.EquatableEntry, String > equatableEntriesTreeMap = new TreeMap<>();
+        final Map< Entries.ComparableEntry, String > comparableEntriesTreeMap = new TreeMap<>();
+
+        equatableEntriesTreeMap.put( equatableEntry1, "Value 1" );
+        equatableEntriesTreeMap.put( equatableEntry2, "Value 2" );
+
+        comparableEntriesTreeMap.put( comparableEntry1, "Value 1" );
+        comparableEntriesTreeMap.put( comparableEntry2, "Value 2" );
+
+        assertThat( equatableEntriesTreeMap.get( equatableEntry ), is( nullValue() ) );
+        assertThat( comparableEntriesTreeMap.get( comparableEntry ), is( equalTo( "Value 1" ) ) );
+    }
+
+    @Test
     public void naturalSortOrderOfEntries_IsPreserved_WhenTreeMapIsNotGivenA_Comparator()
     {
         final Map< Entries.ComparableAndEquatableEntry, String > treeMap = new TreeMap<>();
