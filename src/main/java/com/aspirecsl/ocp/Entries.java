@@ -46,6 +46,14 @@ public class Entries
             return ThreadLocalRandom.current()
                                     .nextInt();
         }
+
+        @Override
+        public String toString()
+        {
+            return "ComparableEntry{" +
+                    "value=" + value +
+                    '}';
+        }
     }
 
     public static class EquatableEntry implements Comparable< EquatableEntry >
@@ -90,6 +98,67 @@ public class Entries
         public int compareTo( EquatableEntry other )
         {
             return -1;
+        }
+
+        @Override
+        public String toString()
+        {
+            return "EquatableEntry{" +
+                    "value=" + value +
+                    '}';
+        }
+    }
+
+    public static class ComparableAndEquatableEntry implements Comparable< ComparableAndEquatableEntry >
+    {
+        private final int value;
+
+        public ComparableAndEquatableEntry( int value )
+        {
+            this.value = value;
+        }
+
+        public int getValue()
+        {
+            return value;
+        }
+
+        @Override
+        public boolean equals( Object o )
+        {
+            if ( this == o )
+            {
+                return true;
+            }
+            if ( o == null || getClass() != o.getClass() )
+            {
+                return false;
+            }
+            ComparableAndEquatableEntry that = ( ComparableAndEquatableEntry ) o;
+            return value == that.value;
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return Objects.hash( value );
+        }
+
+        /*
+         * compareTo method returns -1 for all cases
+         */
+        @Override
+        public int compareTo( ComparableAndEquatableEntry other )
+        {
+            return Integer.compare( value, other.value );
+        }
+
+        @Override
+        public String toString()
+        {
+            return "ComparableAndEquatableEntry{" +
+                    "value=" + value +
+                    '}';
         }
     }
 }

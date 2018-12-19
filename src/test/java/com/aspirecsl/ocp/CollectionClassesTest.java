@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static java.util.Comparator.reverseOrder;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsNot.not;
@@ -19,6 +20,9 @@ public class CollectionClassesTest
     private Entries.ComparableEntry comparableEntry1;
     private Entries.ComparableEntry comparableEntry2;
 
+    private Entries.ComparableAndEquatableEntry comparableAndEquatableEntry1;
+    private Entries.ComparableAndEquatableEntry comparableAndEquatableEntry2;
+
     @Before
     public void setup()
     {
@@ -29,6 +33,9 @@ public class CollectionClassesTest
         comparableEntry = new Entries.ComparableEntry( 1 );
         comparableEntry1 = new Entries.ComparableEntry( 1 );
         comparableEntry2 = new Entries.ComparableEntry( 2 );
+
+        comparableAndEquatableEntry1 = new Entries.ComparableAndEquatableEntry( 1 );
+        comparableAndEquatableEntry2 = new Entries.ComparableAndEquatableEntry( 2 );
     }
 
     @Test
@@ -186,6 +193,28 @@ public class CollectionClassesTest
         assertThat( comparableEntriesHashSet, not( hasItem( comparableEntry ) ) );
         assertThat( comparableEntriesTreeSet, not( hasItem( comparableEntry ) ) );
         assertThat( comparableEntriesLinkedHashSet, not( hasItem( comparableEntry ) ) );
+    }
+
+    @Test
+    public void naturalSortOrderOfEntries_IsPreserved_WhenTreeSetIsNotGivenA_Comparator()
+    {
+        final Set< Entries.ComparableAndEquatableEntry > treeSet = new TreeSet<>();
+
+        treeSet.add( comparableAndEquatableEntry1 );
+        treeSet.add( comparableAndEquatableEntry2 );
+
+        assertThat( treeSet, contains( comparableAndEquatableEntry1, comparableAndEquatableEntry2 ) );
+    }
+
+    @Test
+    public void naturalSortOrderOfEntries_IsIgnored_WhenTreeSetIsGivenA_Comparator()
+    {
+        final Set< Entries.ComparableAndEquatableEntry > treeSet = new TreeSet<>( reverseOrder() );
+
+        treeSet.add( comparableAndEquatableEntry1 );
+        treeSet.add( comparableAndEquatableEntry2 );
+
+        assertThat( treeSet, contains( comparableAndEquatableEntry2, comparableAndEquatableEntry1 ) );
     }
 
     @Test
@@ -380,5 +409,29 @@ public class CollectionClassesTest
         assertThat( comparableEntriesHashMap.containsValue( comparableEntry ), is( false ) );
         assertThat( comparableEntriesTreeMap.containsValue( comparableEntry ), is( false ) );
         assertThat( comparableEntriesLinkedHashMap.containsValue( comparableEntry ), is( false ) );
+    }
+
+    @Test
+    public void naturalSortOrderOfEntries_IsPreserved_WhenTreeMapIsNotGivenA_Comparator()
+    {
+        final Map< Entries.ComparableAndEquatableEntry, String > treeMap = new TreeMap<>();
+
+        treeMap.put( comparableAndEquatableEntry1, "Value 1" );
+        treeMap.put( comparableAndEquatableEntry2, "Value 2" );
+
+        assertThat( treeMap.keySet(), contains( comparableAndEquatableEntry1, comparableAndEquatableEntry2 ) );
+        assertThat( treeMap.values(), contains( "Value 1", "Value 2" ) );
+    }
+
+    @Test
+    public void naturalSortOrderOfEntries_IsIgnored_WhenTreeMapIsGivenA_Comparator()
+    {
+        final Map< Entries.ComparableAndEquatableEntry, String > treeMapReversed = new TreeMap<>( reverseOrder() );
+
+        treeMapReversed.put( comparableAndEquatableEntry1, "Value 1" );
+        treeMapReversed.put( comparableAndEquatableEntry2, "Value 2" );
+
+        assertThat( treeMapReversed.keySet(), contains( comparableAndEquatableEntry2, comparableAndEquatableEntry1 ) );
+        assertThat( treeMapReversed.values(), contains( "Value 2", "Value 1" ) );
     }
 }
